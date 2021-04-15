@@ -10,7 +10,7 @@ module.exports = {
   },
   devtool: 'eval-source-map',
   devServer: {                 
-    contentBase: './dist'      
+    contentBase: './'      
   },
   plugins: [
     new CleanWebpackPlugin(),
@@ -22,6 +22,25 @@ module.exports = {
   ],
   module: {
     rules: [
+      {
+        test: /\.(gif|png|jpe?g)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: 'assets/images/'
+            }
+          }
+        ]
+      },
+      
+      {
+        test:/\.html$/,
+        use: [
+          'html-loader'
+        ]
+      },
       {
         test: /\.css$/,
         use: [
